@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GoodRxAdhocProcessor.BatchView">
+    <Border Stroke="BlueViolet">
+        <Grid RowDefinitions="25,25,25" ColumnDefinitions="80,80,80,80,80">
+            <Label Text="Job Number:" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Center"/>
+            <Label x:Name="JobNumberData" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2"  HorizontalTextAlignment="Center"/>
+            <Label Text="Descriptor Job Code:" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Center"/>
+            <Label x:Name="JobCodeData" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2"  HorizontalTextAlignment="Center"/>
+            <Label Text="Row Count:" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Center"/>
+            <Label x:Name="RowCountData" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2"  HorizontalTextAlignment="Center"/>
+            <Label Text="Select Batch:" Grid.Row="0" Grid.RowSpan="2" Grid.Column="4" HorizontalTextAlignment="Center"/>
+            <CheckBox x:Name="Selected" Grid.Row="2" Grid.Column="4" HorizontalOptions="Center" CheckedChanged="Selected_CheckedChanged"/>
+        </Grid>
+    </Border>
+</ContentView>

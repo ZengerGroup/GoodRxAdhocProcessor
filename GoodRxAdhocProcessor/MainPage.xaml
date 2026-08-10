@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GoodRxAdhocProcessor.MainPage">
+
+    <ScrollView>
+        <Grid RowDefinitions="50,50,50,50,50,50,50,50,50,50,50,50" ColumnDefinitions="200,200,200,200,200">
+            <Label Text="Available Batches" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" HorizontalTextAlignment="Center" />
+            <ScrollView Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="2" >
+                <VerticalStackLayout x:Name="BatchViews"/>
+            </ScrollView>
+            <Button Text="Select Folder" x:Name="FolderPicker" Clicked="FolderPicker_Clicked" Grid.Row="1" Grid.Column="2" MaximumHeightRequest="25" MaximumWidthRequest="150" Padding="0" VerticalOptions="End"/>
+            <Border Stroke="LightGray" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" MaximumHeightRequest="25" >
+                <Label x:Name="SelectedFolderData" />
+            </Border>
+            <Button Text="Process Batch" x:Name="ProcessButton" Grid.Row="4" Grid.Column="2" MaximumHeightRequest="25" Padding="0" Clicked="ProcessButton_Clicked"/>
+            <!--Logo-->
+            <Image Source="zenger_logo.png" HeightRequest="100" WidthRequest="300" Aspect="AspectFit" SemanticProperties.Description="ZG Logo and tag line." 
+                Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="6" Grid.RowSpan="4" HorizontalOptions="Center"/>
+        </Grid>
+    </ScrollView>
+</ContentPage>
