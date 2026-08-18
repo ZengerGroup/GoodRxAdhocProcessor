@@ -8,6 +8,7 @@ namespace GoodRxAdhocProcessor
     {
         public string AdhocPath { get; set; }
         public string SheetName { get; set; } = "Adhocs";
+        public string PricingSheet { get; set; } = "Pricing Tab";
         public string FtpPath { get; set;  }
     }
 }

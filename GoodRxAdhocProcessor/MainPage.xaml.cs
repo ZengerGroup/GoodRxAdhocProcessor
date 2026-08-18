@@ -45,7 +45,11 @@ namespace GoodRxAdhocProcessor
                 else if (selectedIndices.Count > 1) await DisplayAlertAsync("Too many batches selected.", "Please select only one batch, then try again.", "Okay");
                 else
                 {
-                    if (Handler.BeginProcessing(SelectedFolderData.Text, Reader)) await DisplayAlertAsync("Processing complete", "You may exit the program.", "Okay");
+                    if (Reader.UpdatePricing())
+                    {
+                        if (Handler.BeginProcessing(SelectedFolderData.Text, Reader)) await DisplayAlertAsync("Processing complete", "You may exit the program.", "Okay");
+                    }
+                    else await DisplayAlertAsync("Workbook Error", "Failed to update pricing, pleace check adhoc spreadsheet.", "Okay");   
                 }
             }
             else await DisplayAlertAsync("No folder selected.", "Please select a working folder and try again.", "Okay");

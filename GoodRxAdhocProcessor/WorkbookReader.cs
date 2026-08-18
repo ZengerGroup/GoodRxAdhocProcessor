@@ -1,10 +1,10 @@
-﻿using System;
+﻿using ClosedXML;
+using ClosedXML.Excel;
+using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
-using ClosedXML;
-using ClosedXML.Excel;
-using Microsoft.Extensions.Configuration;
 
 namespace GoodRxAdhocProcessor
 {
@@ -91,13 +91,44 @@ namespace GoodRxAdhocProcessor
             for(int i = 0; i < Batches[SelectedIndex].RowNumbers.Count; i++)
             {
                 Worksheet.Unprotect();
-                Worksheet.Cell(Batches[SelectedIndex].RowNumbers[i], "AJ").Value = "XXX";
+                Worksheet.Cell(Batches[SelectedIndex].RowNumbers[i], "AJ").SetValue("XXX");
             }
         }
         public void Close()
         {
             Workbook.Save();
             Workbook.Dispose();
+        }
+        public bool UpdatePricing()
+        {
+            try 
+            {
+                Worksheet.Unprotect();
+                IXLWorksheet pricingSheet = Workbook.Worksheet(_settings.PricingSheet);
+                for(int i = 0; i < Batches.Length; i++) if (Batches[i].Selected) UpdateBatchPricing(Batches[i], pricingSheet);
+                Worksheet.Protect();
+                return true; 
+            }
+            catch (Exception e){ Logger.WriteLog(e.Message, false); return false; }
+        }
+        public void UpdateBatchPricing(Batch batch, IXLWorksheet pricingSheet)
+        {
+            for(int i = 0; i < batch.RowNumbers.Count; i++)
+            {
+                string kitType = Worksheet.Cell(batch.RowNumbers[i], "AE").Value.ToString();
+                string handlingCost = "", totalCost = "";
+                foreach(IXLRow row in pricingSheet.Rows())
+                {
+                    if (row.Cell("A").Value.ToString() == kitType)
+                    {
+                        handlingCost = row.Cell("C").Value.ToString();
+                        totalCost = row.Cell("B").Value.ToString();
+                    }
+                }
+                Worksheet.Cell(batch.RowNumbers[i], "R").SetValue(Double.Parse(handlingCost));
+                Worksheet.Cell(batch.RowNumbers[i], "S").SetValue(Double.Parse(totalCost));
+                Worksheet.Cell(batch.RowNumbers[i], "T").SetValue(Double.Parse(handlingCost) + Double.Parse(totalCost) + Double.Parse(Worksheet.Cell(batch.RowNumbers[i], "Q").Value.ToString()));
+            }
         }
     }
 }
