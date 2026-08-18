@@ -20,7 +20,7 @@ namespace GoodRxAdhocProcessor
         private string GetOutPath(string workingPath)
         {
             return Path.Combine(workingPath, String.Format("doctor-mail-backfeed-adhoc_{0}_{1}_v1-0-1.json",
-                Rows[0].RowData["job_code"], DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")));
+                Rows[0].RowData["job_code"].ToLower(), DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss")));
         }
         private void FillFile()
         {
