@@ -74,7 +74,6 @@ namespace GoodRxAdhocProcessor
                         iteration++;
                     }
                 }
-                    
             }
             return rows;
         }

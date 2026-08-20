@@ -77,7 +77,7 @@ namespace GoodRxAdhocProcessor
             RowData.Add("npi2", "");
             RowData.Add("card", "");
             RowData.Add("jobdescription", "");
-            RowData.Add("delivery_date", row.Cell("U").Value.ToString());
+            RowData.Add("delivery_date", DateTime.Parse(row.Cell("U").Value.ToString()).ToString("yyyy-MM-dd"));
             RowData.Add("impb_digits", "");
             RowData.Add("savings_line", "");
             RowData.Add("initial_kit_type", GetInitialKitType(row.Cell("AE").Value.ToString(), row.Cell("AF").Value.ToString()));
@@ -89,7 +89,7 @@ namespace GoodRxAdhocProcessor
             RowData.Add("matched_date", "");
             RowData.Add("all_in_cpp", GetAllInCpp(row.Cell("T").Value.ToString()));
             RowData.Add("job_code", row.Cell("G").Value.ToString());
-            RowData.Add("mail_date", row.Cell("U").Value.ToString());
+            RowData.Add("mail_date", DateTime.Parse(row.Cell("U").Value.ToString()).ToString("yyyy-MM-dd"));
             RowData.Add("bin_2", "");
             RowData.Add("pcn_2", "");
             RowData.Add("pack_id_3", "");
