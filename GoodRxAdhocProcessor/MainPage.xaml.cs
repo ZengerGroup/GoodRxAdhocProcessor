@@ -10,9 +10,11 @@ namespace GoodRxAdhocProcessor
     {
         WorkbookReader Reader;
         ProcessHandler Handler;
+        private readonly AppSettings _settings;
         public MainPage(IConfiguration configuration)
         {
             InitializeComponent();
+            _settings = configuration.GetSection("Settings").Get<AppSettings>() ?? new AppSettings();
             Logger.InitializeLogger(configuration);
             try
             {
@@ -31,7 +33,8 @@ namespace GoodRxAdhocProcessor
 
         private async void FolderPicker_Clicked(object sender, EventArgs e)
         {
-            var result = await CommunityToolkit.Maui.Storage.FolderPicker.PickAsync(new CancellationToken());
+            string defaultPath = Path.Combine(_settings.DefaultPath, DateTime.Now.ToString("yyyy"));
+            var result = await CommunityToolkit.Maui.Storage.FolderPicker.PickAsync(defaultPath, new CancellationToken());
             if(result.IsSuccessful) SelectedFolderData.Text = result.Folder.Path;
         }
 

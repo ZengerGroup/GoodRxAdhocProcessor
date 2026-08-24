@@ -9,7 +9,7 @@
             <ScrollView Grid.Row="1" Grid.RowSpan="3" Grid.Column="0" Grid.ColumnSpan="2" >
                 <VerticalStackLayout x:Name="BatchViews"/>
             </ScrollView>
-            <Button Text="Select Folder" x:Name="FolderPicker" Clicked="FolderPicker_Clicked" Grid.Row="1" Grid.Column="2" MaximumHeightRequest="25" MaximumWidthRequest="150" Padding="0" VerticalOptions="End"/>
+            <Button Text="Select Internal AdHoc folder for Backfeed File" x:Name="FolderPicker" Clicked="FolderPicker_Clicked" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="3" MaximumHeightRequest="25" MaximumWidthRequest="300" HorizontalOptions="Start" Padding="0" VerticalOptions="End"/>
             <Border Stroke="LightGray" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" MaximumHeightRequest="25" >
                 <Label x:Name="SelectedFolderData" />
             </Border>
