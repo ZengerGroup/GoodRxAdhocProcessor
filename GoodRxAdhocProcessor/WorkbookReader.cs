@@ -95,6 +95,7 @@ namespace GoodRxAdhocProcessor
         }
         public void Close()
         {
+            Worksheet.LastRowUsed().Cell("A").Select();
             Workbook.Save();
             Workbook.Dispose();
         }
